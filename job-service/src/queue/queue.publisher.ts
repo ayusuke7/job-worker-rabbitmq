@@ -3,8 +3,8 @@ import { ClientProxy } from '@nestjs/microservices';
 import { catchError, firstValueFrom, throwError } from 'rxjs';
 
 @Injectable()
-export class QueueService {
-  private readonly logger = new Logger(QueueService.name);
+export class QueuePublisher {
+  private readonly logger = new Logger(QueuePublisher.name);
 
   constructor(
     @Inject('RABBITMQ_SERVICE') private readonly client: ClientProxy,

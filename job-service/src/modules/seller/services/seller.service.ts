@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { QueueService } from 'src/queue/queue.service';
+import { QueuePublisher } from '../../../queue/queue.publisher';
 import { SellerApiService } from './seller-api.service';
 
 @Injectable()
@@ -9,7 +9,7 @@ export class SellerService {
   private routingKey: string | undefined;
 
   constructor(
-    private readonly queueService: QueueService,
+    private readonly queueService: QueuePublisher,
     private readonly configService: ConfigService,
     private readonly sellerRepository: SellerApiService,
   ) {

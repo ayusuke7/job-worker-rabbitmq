@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { QueueService } from './queue.service';
+import { QueuePublisher } from './queue.publisher';
 
 @Module({
   imports: [
@@ -24,7 +24,7 @@ import { QueueService } from './queue.service';
       },
     ]),
   ],
-  providers: [QueueService],
-  exports: [QueueService],
+  providers: [QueuePublisher],
+  exports: [QueuePublisher],
 })
 export class JobModule {}
