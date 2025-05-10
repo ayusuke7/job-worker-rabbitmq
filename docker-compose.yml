@@ -11,21 +11,33 @@ services:
       - RABBITMQ_DEFAULT_PASS=admin
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-  # job-service:
-  #   build: ./job-service
-  #   container_name: job-service
-  #   environment:
-  #     RABBITMQ_URL: amqp://admin:admin@rabbitmq:5672
-  #   depends_on:
-  #     - rabbitmq
 
-  # worker-service:
-  #   build: ./worker-service
-  #   container_name: worker-service
-  #   environment:
-  #     RABBITMQ_URL: amqp://admin:admin@rabbitmq:5672
-  #   depends_on:
-  #     - rabbitmq
+  job-service:
+    build: ./job-service
+    container_name: job-service
+    ports:
+      - "3333:3333"
+    environment:
+      - BASE_API_URL=https://66ec84422b6cf2b89c5eabf1.mockapi.io/piercloud/api/v1
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+      - RABBITMQ_QUEUE=seller_queue
+      - RABBITMQ_ROUTING_KEY=seller.process
+    depends_on:
+      - rabbitmq
+
+  worker-service:
+    build: ./worker-service
+    container_name: worker-service
+    ports:
+      - "4444:4444"
+    environment:
+      - BASE_API_URL=https://66ec84422b6cf2b89c5eabf1.mockapi.io/piercloud/api/v1
+      - RABBITMQ_URL=amqp://admin:admin@rabbitmq:5672
+      - RABBITMQ_QUEUE=seller_queue
+      - RABBITMQ_ROUTING_KEY=seller.process
+      - REPORTS_DIR=./reports
+    depends_on:
+      - rabbitmq
 
 volumes:
   rabbitmq_data:

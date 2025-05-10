@@ -10,4 +10,6 @@ COPY . .
 
 RUN npm run build
 
+RUN mkdir -p /app/reports
+
 CMD ["npm", "run", "start:prod"]
