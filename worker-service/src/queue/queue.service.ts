@@ -15,7 +15,7 @@ export class QueueService {
     const originalMessage = context.getMessage();
 
     try {
-      await this.reportService.getReport(seller);
+      await this.reportService.generateReport(seller);
       channel.ack(originalMessage);
     } catch (error) {
       this.logger.error(error);

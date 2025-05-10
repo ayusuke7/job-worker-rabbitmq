@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
@@ -20,8 +19,9 @@ async function bootstrap() {
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.RMQ,
     options: {
-      urls: [`amqp://admin:admin@localhost:5672`],
+      urls: [configService.get<string>('RABBITMQ_URL')!],
       noAck: false,
+      // queue: configService.get<string>('RABBITMQ_QUEUE'),
       queueOptions: {
         durable: true,
       },
@@ -33,8 +33,9 @@ async function bootstrap() {
   });
 
   await app.startAllMicroservices();
-  app.listen(process.env.PORT ?? 4444);
-  logger.log(`Seller Worker Service is running`);
+
+  // app.listen(4444);
+  logger.log(`Worker Service is running`);
 }
 
 bootstrap();

@@ -17,6 +17,7 @@ export class ProductService {
   }
 
   async getProducts(): Promise<Product[]> {
+    this.logger.debug('Finding products');
     try {
       const { data } = await firstValueFrom(
         this.httpService.get<Product[]>('/produtos', {

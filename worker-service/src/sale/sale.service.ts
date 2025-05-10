@@ -17,6 +17,7 @@ export class SaleService {
   }
 
   async getSales(): Promise<Sale[]> {
+    this.logger.debug('Finding sales');
     try {
       const { data } = await firstValueFrom(
         this.httpService.get<Sale[]>('/vendas', {

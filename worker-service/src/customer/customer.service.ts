@@ -17,6 +17,7 @@ export class CustomerService {
   }
 
   async getCustomers(): Promise<Customer[]> {
+    this.logger.debug('Finding clients');
     try {
       const { data } = await firstValueFrom(
         this.httpService.get<Customer[]>('/clientes', {
