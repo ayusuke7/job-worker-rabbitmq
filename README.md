@@ -53,7 +53,7 @@ npm run start:dev
 - **Vendor Job**: [http://localhost:3333](http://localhost:3333)
   - `/sellers`: Realiza a busca dos vendedores e publica no worker
 - **Reports Worker**:
-  - `N/A`: Indisponível como Serviço REST
+  - `N/A`: Indisponível como REST, o servico esta trabalhando apenas worker de processamento dos dados. (ex: Gravar em um Bucket S3, R2, CloudStorage, etc..)
 
 ### Fluxo do Processo
 
@@ -74,3 +74,17 @@ Os relatórios CSV serão salvos no diretório `reports/` com o formato:
 ```
 vendedor-{id}.csv
 ```
+
+### Como Testar
+
+Certificado que todos os servicoes estao rodando utilizando Docker ou Local, realize uma requisicao do tipo GET para o endpoint /sellers.
+
+Obs: Caso esteja executando o projeto no VSCode utilize a extensao recomendada RestClient e execute o arquivo requests.http na raiz do projeto.
+
+ou
+
+```bash
+curl http://localhost:3333/sellers
+```
+
+PS: Acomponhe os logs no terminal ou no container caso estiver utilizando o Docker.
