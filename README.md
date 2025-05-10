@@ -88,3 +88,7 @@ curl http://localhost:3333/sellers
 ```
 
 PS: Acomponhe os logs no terminal ou no container caso estiver utilizando o Docker.
+
+Exemplo:
+
+![Capture](capture.png)
