@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { CustomerService } from 'src/modules/customer/services/customer.service';
-import { ProductService } from 'src/modules/product/services/product.service';
-import { SaleService } from 'src/modules/sale/services/sale.service';
-import { CsvUtils } from 'src/utils/csv-utils';
+import { CustomerService } from '../../../modules/customer/services/customer.service';
+import { ProductService } from '../../../modules/product/services/product.service';
+import { SaleService } from '../../../modules/sale/services/sale.service';
+import { CsvUtils } from '../../../utils/csv-utils';
 import { Seller } from '../../shared/entities/seller.entity';
 import { Report } from '../entities/report.entity';
 
@@ -46,7 +46,9 @@ export class ReportService {
         }
       });
 
-    this.createCsvReport(reports, seller);
+    if (reports.length) {
+      this.createCsvReport(reports, seller);
+    }
   }
 
   private createCsvReport(reports: Report[], seller: Seller) {

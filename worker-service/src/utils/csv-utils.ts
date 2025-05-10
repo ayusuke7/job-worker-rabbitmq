@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import * as fs from 'fs';
 
 export class CsvUtils {
@@ -28,7 +29,8 @@ export class CsvUtils {
     csvRows.push(csvHeaders.join(','));
     for (const row of data) {
       const values = headers.map((header) => {
-        const value = row[header] || '';
+        const value = row[header] ? row[header].toString() : '';
+
         if (
           value.includes(',') ||
           value.includes('"') ||
@@ -60,7 +62,7 @@ export class CsvUtils {
       fs.writeFileSync(filepath, csvRows.join('\n'));
       return true;
     } catch (error) {
-      console.error(error);
+      Logger.error(error);
     }
 
     return false;
