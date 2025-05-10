@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { QueueService } from '../queue/queue.service';
-import { SellerRepository } from './seller.repository';
+import { QueueService } from 'src/queue/queue.service';
+import { SellerApiService } from './seller-api.service';
 
 @Injectable()
 export class SellerService {
@@ -11,7 +11,7 @@ export class SellerService {
   constructor(
     private readonly queueService: QueueService,
     private readonly configService: ConfigService,
-    private readonly sellerRepository: SellerRepository,
+    private readonly sellerRepository: SellerApiService,
   ) {
     this.routingKey = this.configService.get<string>('RABBITMQ_ROUTING_KEY');
   }

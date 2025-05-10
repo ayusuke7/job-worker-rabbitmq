@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { RmqContext } from '@nestjs/microservices';
-import { ReportService, Seller } from 'src/report/report.service';
+import { ReportService } from 'src/modules/report/services/report.service';
+import { Seller } from 'src/modules/shared/entities/seller.entity';
 
 @Injectable()
 export class QueueService {

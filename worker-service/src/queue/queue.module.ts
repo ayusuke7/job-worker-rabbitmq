@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ReportModule } from 'src/report/report.module';
+import { ReportModule } from 'src/modules/report/report.module';
 import { QueueController } from './queue.controller';
-import { QueueService } from './queue.service';
+import { QueueService } from './services/queue.service';
 
 @Module({
   imports: [ReportModule],

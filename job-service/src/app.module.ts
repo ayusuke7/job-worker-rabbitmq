@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { SellerModule } from './modules/seller/seller.module';
 import { JobModule } from './queue/queue.module';
-import { SellerModule } from './seller/seller.module';
 
 @Module({
   imports: [

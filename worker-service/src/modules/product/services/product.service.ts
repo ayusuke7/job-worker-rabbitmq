@@ -2,11 +2,11 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
-import { Sale } from './sale.entity';
+import { Product } from '../entities/product.entity';
 
 @Injectable()
-export class SaleService {
-  private logger = new Logger(SaleService.name);
+export class ProductService {
+  private logger = new Logger(ProductService.name);
   private readonly baseUrl: string | undefined;
 
   constructor(
@@ -16,18 +16,18 @@ export class SaleService {
     this.baseUrl = this.configService.get<string>('BASE_API_URL');
   }
 
-  async getSales(): Promise<Sale[]> {
-    this.logger.debug('Finding sales');
+  async getProducts(): Promise<Product[]> {
+    this.logger.debug('Finding products');
     try {
       const { data } = await firstValueFrom(
-        this.httpService.get<Sale[]>('/vendas', {
+        this.httpService.get<Product[]>('/produtos', {
           baseURL: this.baseUrl,
         }),
       );
       return data;
     } catch (error) {
       this.logger.error(error);
-      throw new Error('Erro ao buscar vendas');
+      throw new Error('Erro ao buscar produtos');
     }
   }
 }

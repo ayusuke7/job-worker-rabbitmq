@@ -2,10 +2,10 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
-import { Seller } from './seller.entity';
+import { Seller } from '../entities/seller.entity';
 
 @Injectable()
-export class SellerRepository {
+export class SellerApiService {
   private readonly baseUrl: string | undefined;
 
   constructor(

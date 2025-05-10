@@ -1,28 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { CustomerService } from 'src/customer/customer.service';
-import { ProductService } from 'src/product/product.service';
-import { SaleService } from 'src/sale/sale.service';
+import { CustomerService } from 'src/modules/customer/services/customer.service';
+import { ProductService } from 'src/modules/product/services/product.service';
+import { SaleService } from 'src/modules/sale/services/sale.service';
 import { CsvUtils } from 'src/utils/csv-utils';
-
-export class Seller {
-  id: string;
-  nome: string;
-  telefone: string;
-}
-
-export class Report {
-  seler_id: string;
-  seller_name: string;
-  seller_phone: string;
-  product_id: string;
-  product_name: string;
-  product_price: string;
-  product_sku: string;
-  customer_id: string;
-  customer_name: string;
-  customer_email: string;
-  customer_phone: string;
-}
+import { Seller } from '../../shared/entities/seller.entity';
+import { Report } from '../entities/report.entity';
 
 @Injectable()
 export class ReportService {
