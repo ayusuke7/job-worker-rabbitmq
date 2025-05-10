@@ -77,7 +77,7 @@ vendedor-{id}.csv
 
 ### Como Testar
 
-Certificado que todos os servicoes estao rodando utilizando Docker ou Local, realize uma requisicao do tipo GET para o endpoint /sellers.
+Certifique que todos os servicos estao up rodando utilizando Docker ou Local. Realize uma requisicao do tipo GET para o endpoint /sellers.
 
 Obs: Caso esteja executando o projeto no VSCode utilize a extensao recomendada RestClient e execute o arquivo requests.http na raiz do projeto.
 
